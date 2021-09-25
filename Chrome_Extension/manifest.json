@@ -1,0 +1,43 @@
+{
+	"manifest_version": 2,
+	"name": "Job listing aggregater",
+	"description": "A new way to gather and aggregate job listings",
+	"version": "1.0",
+	"author": "@omaramr,@graysonallen",
+
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": true
+	},
+
+	"content_scripts" : [
+		{
+		"matches": [
+				"http://*/*",
+				"https://*/*"
+		],
+		"js": ["content.js"]
+		}
+	],
+
+	"permissions": [
+        "tabs",
+		"cookies",
+		"contextMenus",
+		"storage",
+		"alarms",
+		"activeTab",
+		"downloads",
+		"unlimitedStorage",
+		"http://*/",
+		"https://*/"
+	],
+
+	"browser_action": {
+		
+		"default_title": "The coolest app around"
+
+	}
+
+
+}
