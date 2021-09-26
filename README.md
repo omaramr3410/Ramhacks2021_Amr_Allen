@@ -23,3 +23,7 @@ at this point, the CE can gather the data and package it to the server, and the 
 
 Now go to http://127.0.0.1:5000/ and type in your key words to find your jobs!
 Have fun!
+
+Currently using 
+- the Parsons job board - https://jobs.parsons.com/job-search-results/ <br />
+- the Costar job board - https://costar.wd1.myworkdayjobs.com/CoStarCareers/5/refreshFacet/318c8bb6f553100021d223d9780d30be
