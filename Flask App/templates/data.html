@@ -1,0 +1,32 @@
+<head>
+    <link rel="stylesheet/scss" href="styles/styles.scss" type="text/css">
+</head>
+
+<script>
+    $(document).ready(function () {
+        $('#bulletin_table').DataTable();
+    });
+</script>
+
+
+<hr>
+<div id="ms_bulletins">
+    <table id="bulletin_table" class="display">
+        <thead>
+            <tr>
+                
+                <th>Name</th>
+                <th>Bulletin Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bulletin in bulletins %}
+            <tr>
+                
+                <td>{{ bulletin.title }}</td>
+                <td>{{ bulletin.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
