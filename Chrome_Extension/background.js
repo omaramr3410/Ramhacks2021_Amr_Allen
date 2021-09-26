@@ -164,7 +164,7 @@ let parsons = async () => {
 	for(let i = 0; i < job_arr.length; i++) {
 		let new_obj = {};
 		let curr_elem = job_arr[i];
-		let name = curr_elem.job.name;//gets job titls
+		let name = curr_elem.job.title;//gets job titls
 		let link = curr_elem.job.url;//get link to apply 
 		let job_info = curr_elem.job.description;
 		job_info = job_info.replace(/<\/?[^>]+(>|$)/g, "");
