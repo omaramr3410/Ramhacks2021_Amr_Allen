@@ -18,6 +18,7 @@ let costar = async () => {
 	let count = 0;//tracks current page of info pulled
 	let status;//true if current fetch request was 200 level response, false otherwise
 	let final_costar = [];//final JSON var containing array of dicts, where each element contains dict with keys (name,link,details)
+	let promise_arr;
 	do{
 		console.log();
 		let origin = await fetch("https://costar.wd1.myworkdayjobs.com/CoStarCareers/8/searchPagination/318c8bb6f553100021d223d9780d30be/"+(count+1)*50)
@@ -26,6 +27,8 @@ let costar = async () => {
 				console.log("res value", status);
 				return res;
 			});
+		if(!status)
+			break;
 		let src = await origin.text();
 		const obj = JSON.parse(src);
 		console.log("object for this endpoint", obj);
@@ -35,7 +38,7 @@ let costar = async () => {
 		
 		
 		//got next 50 elements, each element of array is job
-		let promise_arr = [];//contains array of promises
+		promise_arr = [];//contains array of promises
 		let job_arr = obj.body.children[0].children[0].listItems;
 		if(!job_arr)
 			continue;
@@ -44,7 +47,7 @@ let costar = async () => {
 			let curr_promise = new Promise(async (resolve1, reject1) =>{
 				let new_obj = {};
 				let curr_elem = job_arr[i];
-				let name = curr_elem.title.instances.text;//gets name
+				let name = curr_elem.title.instances[0].text;//gets name
 				let link = curr_elem.title.commandLink;//get link to apply 
 				console.log("link", link);
 				//use to fetch the next page, second level down
@@ -88,11 +91,31 @@ let costar = async () => {
 			});
 			promise_arr.push(curr_promise);
 		}
-		const data = await Promise.allSettled(promise_arr)
+		
 
 	}while(status)
 
+	const data = await Promise.allSettled(promise_arr)
+
 	console.log("costar JSON data",final_costar)
+	
+	myHeaders = new Headers();
+	// myHeaders.set("Accept", "text/html, */*; q=0.01");
+
+	let formdata = new FormData();
+	formdata.append("JSON_data", JSON.stringify(final_costar));
+	formdata.append("platform", "Costar");
+
+
+	requestOptions = {
+		method: 'POST',
+		headers: myHeaders,// need to populate headers for web service will necessary info
+		body: formdata,
+		redirect: 'follow'
+	};
+	
+	let send_info = await fetch("http://127.0.0.1:5000/receive", requestOptions);
+
 	return final_costar;
 };
 
