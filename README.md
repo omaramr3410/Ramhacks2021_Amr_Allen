@@ -12,7 +12,7 @@ To setup the server, navigate to the Flask folder in this repo, then run the thr
 (Windows) <br />
 set FLASK_APP=app <br />
 set FLASK_ENV=development <br />
-flask run--
+flask run <br />
 
 (Mac) <br />
 export FLASK_APP=app <br />
