@@ -8,16 +8,16 @@ At this point, the CE with gather the data and send it over to the API
 
 **Part 2**
 
-To setup the server, navigate to the Flask folder in this repo, then run the three commands to start the server--
-(Windows)--
-set FLASK_APP=app --
-set FLASK_ENV=development--
+To setup the server, navigate to the Flask folder in this repo, then run the three commands to start the server <br />
+(Windows) <br />
+set FLASK_APP=app <br />
+set FLASK_ENV=development <br />
 flask run--
 
-(Mac)--
-export FLASK_APP=app--
-export FLASK_ENV=development--
-flask run--
+(Mac) <br />
+export FLASK_APP=app <br />
+export FLASK_ENV=development <br />
+flask run <br />
 
 at this point, the CE can gather the data and package it to the server, and the server can analyze and present to the user
 
